@@ -16,7 +16,6 @@ repo is already scaffolded as a Flutter package (`pubspec.yaml` depends on
 the `flutter` SDK), so splitting would add publishing/versioning overhead
 without payoff for v1. Instead, Flutter dependency is isolated at the file
 level: only one file imports `package:flutter`.
-
 ```
 arabic_dev_utils/
 ├── lib/
