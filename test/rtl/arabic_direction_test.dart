@@ -68,4 +68,39 @@ void main() {
       expect(ArabicDirection.dominantDirection(''), TextDirection.neutral);
     });
   });
+
+  group('ArabicDirection non-RTL script regression (guards against the '
+      'FB1D range-corruption bug)', () {
+    test('Chinese text is not detected as RTL', () {
+      expect(ArabicDirection.isRtl('中文测试'), isFalse);
+      expect(
+        ArabicDirection.dominantDirection('中文测试'),
+        TextDirection.neutral,
+      );
+    });
+
+    test('Thai text is not detected as RTL', () {
+      expect(ArabicDirection.isRtl('ไทยทดสอบ'), isFalse);
+      expect(
+        ArabicDirection.dominantDirection('ไทยทดสอบ'),
+        TextDirection.neutral,
+      );
+    });
+
+    test('Hangul text is not detected as RTL', () {
+      expect(ArabicDirection.isRtl('한국어테스트'), isFalse);
+      expect(
+        ArabicDirection.dominantDirection('한국어테스트'),
+        TextDirection.neutral,
+      );
+    });
+
+    test('Hebrew text is still correctly detected as RTL', () {
+      expect(ArabicDirection.isRtl('שלום עולם'), isTrue);
+      expect(
+        ArabicDirection.dominantDirection('שלום עולם'),
+        TextDirection.rtl,
+      );
+    });
+  });
 }
