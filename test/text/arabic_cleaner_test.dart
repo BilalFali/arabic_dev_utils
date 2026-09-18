@@ -20,12 +20,12 @@ void main() {
     });
 
     test('removes bidi embedding/override controls (U+202A-U+202E)', () {
-      const controls = '‪‫‬‭‮';
+      const controls = '\u202a\u202b\u202c\u202d\u202e';
       expect(ArabicCleaner.strip('مرحبا$controls'), 'مرحبا');
     });
 
     test('removes bidi isolate controls (U+2066-U+2069)', () {
-      const isolates = '⁦⁧⁨⁩';
+      const isolates = '\u2066\u2067\u2068\u2069';
       expect(ArabicCleaner.strip('مرحبا$isolates'), 'مرحبا');
     });
 
