@@ -90,15 +90,15 @@ void main() {
     });
 
     test('removes fathatan (tanween)', () {
-      expect(ArabicText.removeDiacritics('كِتَابًا'), 'كِتَابا');
+      expect(ArabicText.removeDiacritics('كِتَابًا'), 'كتابا');
     });
 
     test('removes dammatan (tanween)', () {
-      expect(ArabicText.removeDiacritics('كِتَابٌ'), 'كِتَاب');
+      expect(ArabicText.removeDiacritics('كِتَابٌ'), 'كتاب');
     });
 
     test('removes kasratan (tanween)', () {
-      expect(ArabicText.removeDiacritics('كِتَابٍ'), 'كِتَاب');
+      expect(ArabicText.removeDiacritics('كِتَابٍ'), 'كتاب');
     });
 
     test('removes dagger alef (U+0670)', () {
@@ -168,7 +168,7 @@ void main() {
 
   group('ArabicText.normalize', () {
     test('applies diacritics, tatweel, alef, yeh in order (teh off by default)', () {
-      expect(ArabicText.normalize('أَحْمَـدٌ عَلَى'), 'احمد على');
+      expect(ArabicText.normalize('أَحْمَـدٌ عَلَى'), 'احمد علي');
     });
 
     test('normalizeTeh: false leaves teh marbuta untouched', () {
