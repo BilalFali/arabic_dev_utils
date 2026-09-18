@@ -18,3 +18,14 @@ example/.dart_tool/
 # directory triggers a `dart pub publish` naming warning and would otherwise
 # ship internal planning artifacts to consumers of the package.
 docs/
+
+# Miscellaneous / IDE files (kept in sync with .gitignore's non-hidden entries;
+# dot-prefixed paths like .idea/ and .history are already excluded by pub
+# regardless of any ignore file).
+*.class
+*.log
+*.pyc
+*.swp
+*.iml
+*.ipr
+*.iws

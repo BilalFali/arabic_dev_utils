@@ -10,9 +10,9 @@ import 'arabic_direction.dart' as detect;
 /// easier to discover and use for the common case of "set this widget's
 /// direction from a string" without looking up `Bidi`'s API.
 ///
-/// [detect.TextDirection.mixed] and [detect.TextDirection.neutral] both
-/// resolve to [TextDirection.ltr], since there is no single correct choice
-/// for genuinely mixed or non-directional text.
+/// [detect.ArabicTextDirection.mixed] and [detect.ArabicTextDirection.neutral]
+/// both resolve to [TextDirection.ltr], since there is no single correct
+/// choice for genuinely mixed or non-directional text.
 class ArabicDirectionality extends StatelessWidget {
   /// Creates an [ArabicDirectionality] that infers direction from
   /// [basedOn].
@@ -31,7 +31,7 @@ class ArabicDirectionality extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final direction = detect.ArabicDirection.dominantDirection(basedOn);
-    final resolved = direction == detect.TextDirection.rtl
+    final resolved = direction == detect.ArabicTextDirection.rtl
         ? TextDirection.rtl
         : TextDirection.ltr;
     return Directionality(textDirection: resolved, child: child);

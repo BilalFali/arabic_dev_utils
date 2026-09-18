@@ -22,6 +22,11 @@ void main() {
     test('false for punctuation-only string', () {
       expect(ArabicText.isArabic('!!! ??? ,,,'), isFalse);
     });
+
+    test('false for BOM-prefixed non-Arabic text', () {
+      final bom = String.fromCharCode(0xFEFF);
+      expect(ArabicText.isArabic('${bom}hello'), isFalse);
+    });
   });
 
   group('ArabicText.isArabicOnly', () {

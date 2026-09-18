@@ -29,7 +29,7 @@ arabic_dev_utils/
 │       ├── numbers/
 │       │   └── arabic_numbers.dart        // ArabicNumbers (pure Dart, intl dep)
 │       └── rtl/
-│           ├── arabic_direction.dart      // ArabicDirection + TextDirection enum (pure Dart)
+│           ├── arabic_direction.dart      // ArabicDirection + ArabicTextDirection enum (pure Dart)
 │           └── arabic_directionality.dart // ArabicDirectionality widget (Flutter only)
 ├── test/
 │   ├── text/arabic_text_test.dart
@@ -64,7 +64,9 @@ Static methods, all pure functions on `String`:
 
 | Method | Behavior |
 |---|---|
-| `isArabic(String)` → bool | true if text contains any Arabic-script codepoint (U+0600–U+06FF, U+0750–U+077F, U+08A0–U+08FF, U+FB50–U+FDFF, U+FE70–U+FEFF) |
+| `isArabic(String)` → bool | true if text contains any Arabic-script codepoint (U+0600–U+06FF, U+0750–U+077F, U+08A0–U+08FF, U+FB50–U+FDFF, U+FE70–U+FEFC) |
+
+Note: the Arabic Presentation Forms-B range is deliberately capped at U+FEFC (the last assigned character, lam-alef); U+FEFD/U+FEFE are unassigned and U+FEFF is the byte-order mark (BOM), which must never be classified as Arabic/RTL script. U+FEFF is instead handled by `stripInvisibleChars`/`ArabicCleaner`.
 | `isArabicOnly(String)` → bool | true if every non-whitespace, non-punctuation character is Arabic script |
 | `isMixed(String)` → bool | true if text contains both Arabic-script and Latin-script characters |
 | `removeDiacritics(String)` → String | strips U+064B–U+0652 and U+0670 (tashkeel: fatha, damma, kasra, shadda, sukun, tanween, dagger alef) |
@@ -105,14 +107,14 @@ even though the two strings render identically.
 ## Module 4: `ArabicDirection` + `ArabicDirectionality` (lib/src/rtl/)
 
 `arabic_direction.dart` (pure Dart):
-- `enum TextDirection { rtl, ltr, mixed, neutral }`
+- `enum ArabicTextDirection { rtl, ltr, mixed, neutral }`
 - `ArabicDirection.isRtl(String)` → bool — true if the first strong-directional character is RTL (Arabic/Hebrew script)
 - `ArabicDirection.isLtr(String)` → bool — true if the first strong-directional character is LTR
 - `ArabicDirection.isMixedDirection(String)` → bool — true if text has both RTL and LTR strong-directional characters
-- `ArabicDirection.dominantDirection(String)` → `TextDirection` — `mixed` if both scripts present, else `rtl`/`ltr` based on which is present, else `neutral` if no strong-directional characters (e.g. digits/punctuation only, or empty string)
+- `ArabicDirection.dominantDirection(String)` → `ArabicTextDirection` — `mixed` if both scripts present, else `rtl`/`ltr` based on which is present, else `neutral` if no strong-directional characters (e.g. digits/punctuation only, or empty string)
 
 `arabic_directionality.dart` (Flutter only):
-- `ArabicDirectionality({required Widget child, required String basedOn})` — wraps `Directionality`, setting `textDirection` from `ArabicDirection.dominantDirection(basedOn)` (`mixed`/`neutral` fall back to `TextDirection.ltr` from `package:flutter` — note the naming collision with our own `TextDirection` enum, resolved via import prefix or hiding).
+- `ArabicDirectionality({required Widget child, required String basedOn})` — wraps `Directionality`, setting `textDirection` from `ArabicDirection.dominantDirection(basedOn)` (`mixed`/`neutral` fall back to `TextDirection.ltr` from `package:flutter`). The enum was renamed from `TextDirection` to `ArabicTextDirection` to avoid colliding with Flutter's own `TextDirection` type for consumers who import both unprefixed.
 
 README documents that `intl`'s `Bidi` class already exists and explains in
 one sentence why this wrapper is easier to discover/use for the common
@@ -131,7 +133,7 @@ One test file per module, mirroring the `lib/src/` tree, using
   ranking order correctness.
 - `ArabicNumbers`: round-trip digit conversion, Extended Arabic-Indic
   handling, `format` sanity check.
-- `ArabicDirection`: each `TextDirection` case, `ArabicDirectionality`
+- `ArabicDirection`: each `ArabicTextDirection` case, `ArabicDirectionality`
   widget smoke test (pumps a widget, checks resolved `Directionality`).
 
 ## Non-functional requirements

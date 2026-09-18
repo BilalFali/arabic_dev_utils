@@ -46,4 +46,19 @@ void main() {
     );
     expect(directionality.textDirection, TextDirection.ltr);
   });
+
+  testWidgets('resolves LTR directionality for mixed basedOn text',
+      (tester) async {
+    await tester.pumpWidget(
+      const ArabicDirectionality(
+        basedOn: 'hello مرحبا',
+        child: Text('hello مرحبا', textDirection: TextDirection.ltr),
+      ),
+    );
+
+    final directionality = tester.widget<Directionality>(
+      find.byType(Directionality),
+    );
+    expect(directionality.textDirection, TextDirection.ltr);
+  });
 }

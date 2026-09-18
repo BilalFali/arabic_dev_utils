@@ -1,5 +1,5 @@
 /// The dominant reading direction of a piece of text.
-enum TextDirection {
+enum ArabicTextDirection {
   /// The text is dominated by right-to-left script.
   rtl,
 
@@ -21,7 +21,7 @@ class ArabicDirection {
 
   static final RegExp _rtlChar = RegExp(
     '[\u0590-\u05FF\u0600-\u06FF\u0700-\u074F\u0750-\u077F\u08A0-\u08FF'
-    '\uFB1D-\uFDFF\uFE70-\uFEFF]',
+    '\uFB1D-\uFDFF\uFE70-\uFEFC]',
   );
   static final RegExp _ltrChar = RegExp('[A-Za-z]');
 
@@ -38,15 +38,17 @@ class ArabicDirection {
   static bool isMixedDirection(String text) =>
       _rtlChar.hasMatch(text) && _ltrChar.hasMatch(text);
 
-  /// Returns the dominant [TextDirection] of [text] based on the presence
-  /// of right-to-left and left-to-right strong-directional characters.
-  static TextDirection dominantDirection(String text) {
+  /// Returns the dominant [ArabicTextDirection] of [text] based on the
+  /// presence of right-to-left and left-to-right strong-directional
+  /// characters. LTR detection covers Latin script (A-Z, a-z) only — other
+  /// left-to-right scripts (Cyrillic, CJK, etc.) are treated as neutral.
+  static ArabicTextDirection dominantDirection(String text) {
     final hasRtl = _rtlChar.hasMatch(text);
     final hasLtr = _ltrChar.hasMatch(text);
-    if (hasRtl && hasLtr) return TextDirection.mixed;
-    if (hasRtl) return TextDirection.rtl;
-    if (hasLtr) return TextDirection.ltr;
-    return TextDirection.neutral;
+    if (hasRtl && hasLtr) return ArabicTextDirection.mixed;
+    if (hasRtl) return ArabicTextDirection.rtl;
+    if (hasLtr) return ArabicTextDirection.ltr;
+    return ArabicTextDirection.neutral;
   }
 
   static bool? _firstStrongIsRtl(String text) {

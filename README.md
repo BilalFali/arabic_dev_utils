@@ -35,7 +35,7 @@ ArabicNumbers.toArabicDigits('100 ريال'); // '١٠٠ ريال'
 ArabicNumbers.format(1234, locale: 'ar_EG'); // '١٬٢٣٤'
 
 // RTL/direction
-ArabicDirection.dominantDirection('مرحبا hello'); // TextDirection.mixed
+ArabicDirection.dominantDirection('مرحبا hello'); // ArabicTextDirection.mixed
 ArabicDirectionality(
   basedOn: 'مرحبا',
   child: Text('مرحبا'), // rendered right-to-left automatically
@@ -68,7 +68,7 @@ ArabicDirectionality(
 
 ### RTL/direction (`ArabicDirection`)
 - `isRtl`, `isLtr`, `isMixedDirection` — direction checks
-- `dominantDirection` — returns a `TextDirection` (`rtl`, `ltr`, `mixed`,
+- `dominantDirection` — returns an `ArabicTextDirection` (`rtl`, `ltr`, `mixed`,
   `neutral`)
 - `ArabicDirectionality` — a `Directionality`-wrapping widget that infers
   direction from a string. `package:intl`'s `Bidi` class already exposes

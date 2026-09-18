@@ -46,26 +46,46 @@ void main() {
 
   group('ArabicDirection.dominantDirection', () {
     test('returns rtl for Arabic-only text', () {
-      expect(ArabicDirection.dominantDirection('مرحبا'), TextDirection.rtl);
+      expect(
+        ArabicDirection.dominantDirection('مرحبا'),
+        ArabicTextDirection.rtl,
+      );
     });
 
     test('returns ltr for Latin-only text', () {
-      expect(ArabicDirection.dominantDirection('hello'), TextDirection.ltr);
+      expect(
+        ArabicDirection.dominantDirection('hello'),
+        ArabicTextDirection.ltr,
+      );
     });
 
     test('returns mixed when both scripts are present', () {
       expect(
         ArabicDirection.dominantDirection('hello مرحبا'),
-        TextDirection.mixed,
+        ArabicTextDirection.mixed,
       );
     });
 
     test('returns neutral for digits/punctuation only', () {
-      expect(ArabicDirection.dominantDirection('123 !!!'), TextDirection.neutral);
+      expect(
+        ArabicDirection.dominantDirection('123 !!!'),
+        ArabicTextDirection.neutral,
+      );
     });
 
     test('returns neutral for empty string', () {
-      expect(ArabicDirection.dominantDirection(''), TextDirection.neutral);
+      expect(
+        ArabicDirection.dominantDirection(''),
+        ArabicTextDirection.neutral,
+      );
+    });
+
+  });
+
+  group('ArabicDirection.isRtl BOM regression', () {
+    test('false for BOM-prefixed non-Arabic text', () {
+      final bom = String.fromCharCode(0xFEFF);
+      expect(ArabicDirection.isRtl('${bom}hello'), isFalse);
     });
   });
 
@@ -75,7 +95,7 @@ void main() {
       expect(ArabicDirection.isRtl('中文测试'), isFalse);
       expect(
         ArabicDirection.dominantDirection('中文测试'),
-        TextDirection.neutral,
+        ArabicTextDirection.neutral,
       );
     });
 
@@ -83,7 +103,7 @@ void main() {
       expect(ArabicDirection.isRtl('ไทยทดสอบ'), isFalse);
       expect(
         ArabicDirection.dominantDirection('ไทยทดสอบ'),
-        TextDirection.neutral,
+        ArabicTextDirection.neutral,
       );
     });
 
@@ -91,7 +111,7 @@ void main() {
       expect(ArabicDirection.isRtl('한국어테스트'), isFalse);
       expect(
         ArabicDirection.dominantDirection('한국어테스트'),
-        TextDirection.neutral,
+        ArabicTextDirection.neutral,
       );
     });
 
@@ -99,7 +119,7 @@ void main() {
       expect(ArabicDirection.isRtl('שלום עולם'), isTrue);
       expect(
         ArabicDirection.dominantDirection('שלום עולם'),
-        TextDirection.rtl,
+        ArabicTextDirection.rtl,
       );
     });
   });

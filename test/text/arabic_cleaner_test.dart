@@ -29,6 +29,11 @@ void main() {
       expect(ArabicCleaner.strip('مرحبا$isolates'), 'مرحبا');
     });
 
+    test('removes byte-order mark (U+FEFF)', () {
+      final bom = String.fromCharCode(0xFEFF);
+      expect(ArabicCleaner.strip('${bom}hello'), 'hello');
+    });
+
     test('leaves visible text untouched', () {
       expect(ArabicCleaner.strip('Hello مرحبا 123'), 'Hello مرحبا 123');
     });

@@ -8,11 +8,11 @@ class ArabicText {
   ArabicText._();
 
   static final RegExp _arabicChar = RegExp(
-    '[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]',
+    '[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-ﻼ]',
   );
   static final RegExp _latinChar = RegExp('[A-Za-z]');
   static final RegExp _arabicOnlyFullMatch = RegExp(
-    r'^[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]+$',
+    r'^[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-ﻼ]+$',
   );
   static final RegExp _whitespaceOrPunctuation = RegExp(
     r'[\s\p{P}]',
