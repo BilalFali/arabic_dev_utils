@@ -1,0 +1,17 @@
+name: arabic_dev_utils_example
+description: "Demo app for the arabic_dev_utils package."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  arabic_dev_utils:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
