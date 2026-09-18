@@ -48,8 +48,11 @@ class ArabicNumbers {
       _extendedArabicIndicDigit.hasMatch(text);
 
   /// Formats [value] using `package:intl`'s locale-aware
-  /// [NumberFormat.decimalPattern], defaulting to the `'ar'` locale (Arabic
-  /// digit output with Arabic grouping/decimal separators).
+  /// [NumberFormat.decimalPattern]. The digit set and separators depend on
+  /// the exact locale code: `'ar'` alone uses Western (0-9) digits under
+  /// this intl version, while a country-qualified code like `'ar_EG'`
+  /// produces Arabic-Indic (٠-٩) digits with Arabic grouping/decimal
+  /// separators. Pass the locale that matches what you need.
   ///
   /// This is a thin, discoverability wrapper — `package:intl` already does
   /// correct locale-aware number formatting, and this method exists so
