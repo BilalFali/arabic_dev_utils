@@ -20,8 +20,8 @@ class ArabicDirection {
   ArabicDirection._();
 
   static final RegExp _rtlChar = RegExp(
-    '[֐-׿؀-ۿ܀-ݏݐ-ݿࢠ-ࣿ'
-    'יִ-﷿ﹰ-﻿]',
+    '[\u0590-\u05FF\u0600-\u06FF\u0700-\u074F\u0750-\u077F\u08A0-\u08FF'
+    '\uFB1D-\uFDFF\uFE70-\uFEFF]',
   );
   static final RegExp _ltrChar = RegExp('[A-Za-z]');
 
