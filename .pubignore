@@ -1,0 +1,20 @@
+# NOTE: when a .pubignore file is present, `dart pub publish` uses it
+# INSTEAD OF .gitignore (they are not merged), so every exclusion that
+# matters for publishing has to be repeated here even though it also
+# lives in .gitignore for normal git use.
+
+# Flutter/Dart/Pub build artifacts.
+/pubspec.lock
+**/doc/api/
+.dart_tool/
+.flutter-plugins-dependencies
+/build/
+/coverage/
+example/.dart_tool/
+
+# Internal spec/plan/task tracking for this package's development (not
+# user-facing documentation). Pub's layout convention reserves the singular
+# "doc/" directory name for dartdoc output, so a plural top-level "docs/"
+# directory triggers a `dart pub publish` naming warning and would otherwise
+# ship internal planning artifacts to consumers of the package.
+docs/
