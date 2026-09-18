@@ -1567,7 +1567,10 @@ class _HomePageState extends State<HomePage> {
             'toEnglishDigits("١٢٣"): '
             '${ArabicNumbers.toEnglishDigits("١٢٣")}',
           ),
-          Text('format(1234): ${ArabicNumbers.format(1234)}'),
+          Text(
+            "format(1234, locale: 'ar_EG'): "
+            "${ArabicNumbers.format(1234, locale: 'ar_EG')}",
+          ),
           const SizedBox(height: 24),
           _SectionTitle('4. ArabicDirection'),
           Text(
@@ -1667,7 +1670,7 @@ ArabicSearch.rank('علي', ['محمد علي', 'علي حسن']); // ['علي �
 
 // Numbers
 ArabicNumbers.toArabicDigits('100 ريال'); // '١٠٠ ريال'
-ArabicNumbers.format(1234); // '١٬٢٣٤'
+ArabicNumbers.format(1234, locale: 'ar_EG'); // '١٬٢٣٤'
 
 // RTL/direction
 ArabicDirection.dominantDirection('مرحبا hello'); // TextDirection.mixed

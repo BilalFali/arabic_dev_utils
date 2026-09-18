@@ -100,6 +100,8 @@ even though the two strings render identically.
 | `containsArabicDigits(String)` → bool | true if text contains any U+0660–U+0669 or U+06F0–U+06F9 |
 | `format(num value, {String locale = 'ar'})` → String | thin wrapper: `NumberFormat.decimalPattern(locale).format(value)` from `package:intl`; dartdoc explains this exists for discoverability (so users don't have to know to reach for `intl` directly), not because `intl` is inadequate |
 
+**Note (discovered during implementation):** under the pinned `intl` version, the bare `'ar'` locale code produces Western (0-9) digits, not Arabic-Indic — only country-qualified codes like `'ar_EG'` produce Arabic-Indic (٠-٩) digit output. `format()`'s dartoc documents this explicitly rather than overclaiming Arabic digit output for the plain `'ar'` default. Any README/example usage that wants to *demonstrate* Arabic-Indic digit output must call `format(value, locale: 'ar_EG')` (or another country-qualified Arabic locale), not rely on the default.
+
 ## Module 4: `ArabicDirection` + `ArabicDirectionality` (lib/src/rtl/)
 
 `arabic_direction.dart` (pure Dart):
