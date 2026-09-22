@@ -40,6 +40,10 @@ ArabicDirectionality(
   basedOn: 'مرحبا',
   child: Text('مرحبا'), // rendered right-to-left automatically
 );
+
+// Hijri calendar
+HijriDate.fromGregorian(DateTime(2024, 3, 20)); // a HijriDate
+HijriDate(1445, 9, 10).toGregorian(); // a DateTime
 ```
 
 ## Features
@@ -74,6 +78,14 @@ ArabicDirectionality(
   direction from a string. `package:intl`'s `Bidi` class already exposes
   direction detection, but this widget is easier to discover and use for
   the common "set this widget's direction from a string" case.
+
+### Hijri calendar (`HijriDate`)
+- `HijriDate.fromGregorian(DateTime)` / `.toGregorian()` — convert between
+  the Gregorian calendar and the tabular (civil-epoch) Hijri calendar
+- This is a **computed** calendar, not a moon-sighting calendar — it will
+  not always agree with locally announced Hijri dates or the Umm al-Qura
+  civil calendar used in Saudi Arabia, which can differ by a day or two
+  around month boundaries
 
 ## Why invisible-character stripping matters
 
