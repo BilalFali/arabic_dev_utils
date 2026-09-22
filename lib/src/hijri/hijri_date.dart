@@ -34,6 +34,10 @@ class HijriDate implements Comparable<HijriDate> {
 
   /// Converts [date]'s year/month/day components (ignoring time-of-day and
   /// timezone) to a [HijriDate].
+  ///
+  /// May throw [ArgumentError] for Gregorian dates well before the Hijri
+  /// epoch (~622 CE), where behavior is unspecified per the class-level
+  /// documentation.
   factory HijriDate.fromGregorian(DateTime date) {
     final jdn = _gregorianToJdn(date.year, date.month, date.day);
     final (year, month, day) = _jdnToHijri(jdn);

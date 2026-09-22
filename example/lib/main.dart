@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Package version 0.1.0',
+                  'Package version 0.2.0',
                   style: TextStyle(
                     color: _Palette.sage.withValues(alpha: 0.7),
                     fontSize: 12,

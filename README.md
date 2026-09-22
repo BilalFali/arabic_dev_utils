@@ -5,15 +5,15 @@ Useful utilities for developers building Arabic and RTL Flutter/Dart application
 
 `arabic_dev_utils` is a modular toolkit for MENA app development: normalize
 and classify Arabic text, search across it in a diacritic-insensitive way,
-convert between Arabic and Western digits, and infer RTL/LTR direction —
-without pulling in a framework or reimplementing locale-aware number
-formatting yourself.
+convert between Arabic and Western digits, infer RTL/LTR direction, and
+convert between the Hijri and Gregorian calendars — without pulling in a
+framework or reimplementing locale-aware number formatting yourself.
 
 ## Install
 
 ```yaml
 dependencies:
-  arabic_dev_utils: ^0.1.0
+  arabic_dev_utils: ^0.2.0
 ```
 
 ## Quick start
