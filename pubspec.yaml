@@ -1,6 +1,6 @@
 name: arabic_dev_utils
 description: "Utilities for developers building Arabic and RTL Flutter/Dart applications: text normalization, invisible-character cleanup, Arabic-aware search, digit conversion, and RTL direction helpers."
-version: 0.1.0
+version: 0.2.0
 repository: https://github.com/BilalFali/arabic_dev_utils
 
 environment:

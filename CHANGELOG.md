@@ -1,3 +1,10 @@
+## 0.2.0
+
+- `HijriDate`: conversion between the Gregorian calendar and the tabular
+  (civil-epoch) Hijri calendar, via `HijriDate.fromGregorian` and
+  `toGregorian()`. This is a computed calendar, not a moon-sighting
+  calendar — see the class dartdoc for details.
+
 ## 0.1.0
 
 Initial release.
