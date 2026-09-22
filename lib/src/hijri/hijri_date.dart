@@ -115,6 +115,7 @@ class HijriDate implements Comparable<HijriDate> {
         385;
   }
 
+  /// Whether this date has the same [year], [month], and [day] as [other].
   @override
   bool operator ==(Object other) =>
       other is HijriDate &&
@@ -122,9 +123,12 @@ class HijriDate implements Comparable<HijriDate> {
       month == other.month &&
       day == other.day;
 
+  /// A hash code consistent with [operator ==].
   @override
   int get hashCode => Object.hash(year, month, day);
 
+  /// Compares this date to [other] chronologically, by year, then month,
+  /// then day.
   @override
   int compareTo(HijriDate other) {
     if (year != other.year) return year.compareTo(other.year);
@@ -132,6 +136,7 @@ class HijriDate implements Comparable<HijriDate> {
     return day.compareTo(other.day);
   }
 
+  /// Formats this date as `YYYY-MM-DD`.
   @override
   String toString() =>
       '$year-${month.toString().padLeft(2, '0')}-'
