@@ -192,6 +192,32 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              _ReferenceSection(
+                label: 'Hijri calendar',
+                description:
+                    'Converts between Gregorian and the tabular '
+                    '(civil-epoch) Hijri calendar — a computed calendar, '
+                    'not a moon-sighting one.',
+                children: [
+                  _TransformRow(
+                    before: '2024-03-20',
+                    after: HijriDate.fromGregorian(
+                      DateTime(2024, 3, 20),
+                    ).toString(),
+                    caption: 'HijriDate.fromGregorian(DateTime(2024, 3, 20))',
+                  ),
+                  const SizedBox(height: 12),
+                  _TransformRow(
+                    before: '1445-09-10',
+                    after: HijriDate(
+                      1445,
+                      9,
+                      10,
+                    ).toGregorian().toIso8601String().split('T').first,
+                    caption: 'HijriDate(1445, 9, 10).toGregorian()',
+                  ),
+                ],
+              ),
               const SizedBox(height: 24),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
